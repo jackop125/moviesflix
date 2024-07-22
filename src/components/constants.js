@@ -1,0 +1,1 @@
+const movieStreamingUrl = "https://autoembed.co/movie/tmdb/"
