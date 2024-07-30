@@ -80,7 +80,12 @@ const Home = () => {
       </h1>
       <div className="py-4 md:flex md:flex-wrap md:justify-center">
         {data.map((item, index) => (
-          <Link key={`${item.id}-${index}`} to={item.media_type == "movie" ? `/movieplayer/${item.id}`: `/seriesplayer/${item.id}`}  onClick={scrollToTop} >
+          <Link key={`${item.id}-${index}`} to={item.media_type == "movie" ? `/movieplayer/${item.id}`:(item.media_type == "tv"? `/seriesplayer/${item.id}` : "")}  onClick={scrollToTop} >
+            {
+              (()=>{
+                console.log(item);
+              })()
+            }
           <Card  cardData={item}></Card>
           </Link>
         ))}

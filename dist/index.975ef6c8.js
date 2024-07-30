@@ -34850,16 +34850,21 @@ const Home = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "py-4 md:flex md:flex-wrap md:justify-center",
                 children: data.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: item.media_type == "movie" ? `/movieplayer/${item.id}` : `/seriesplayer/${item.id}`,
+                        to: item.media_type == "movie" ? `/movieplayer/${item.id}` : item.media_type == "tv" ? `/seriesplayer/${item.id}` : "",
                         onClick: scrollToTop,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
-                            cardData: item
-                        }, void 0, false, {
-                            fileName: "src/components/Home.jsx",
-                            lineNumber: 84,
-                            columnNumber: 11
-                        }, undefined)
-                    }, `${item.id}-${index}`, false, {
+                        children: [
+                            (()=>{
+                                console.log(item);
+                            })(),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                                cardData: item
+                            }, void 0, false, {
+                                fileName: "src/components/Home.jsx",
+                                lineNumber: 89,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, `${item.id}-${index}`, true, {
                         fileName: "src/components/Home.jsx",
                         lineNumber: 83,
                         columnNumber: 11
@@ -34877,12 +34882,12 @@ const Home = ()=>{
                     children: "Load More"
                 }, void 0, false, {
                     fileName: "src/components/Home.jsx",
-                    lineNumber: 89,
+                    lineNumber: 94,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Home.jsx",
-                lineNumber: 88,
+                lineNumber: 93,
                 columnNumber: 7
             }, undefined)
         ]
