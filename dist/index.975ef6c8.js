@@ -2970,12 +2970,14 @@ var _moviePlayer = require("./components/MoviePlayer");
 var _moviePlayerDefault = parcelHelpers.interopDefault(_moviePlayer);
 var _seriesPlayer = require("./components/SeriesPlayer");
 var _seriesPlayerDefault = parcelHelpers.interopDefault(_seriesPlayer);
+var _search = require("./components/Search");
+var _searchDefault = parcelHelpers.interopDefault(_search);
 const appRouter = (0, _reactRouterDom.createBrowserRouter)([
     {
         path: "/",
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _appDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
-            lineNumber: 15,
+            lineNumber: 16,
             columnNumber: 14
         }, undefined),
         children: [
@@ -2983,7 +2985,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _homeDefault.default), {}, void 0, false, {
                     fileName: "src/index.js",
-                    lineNumber: 19,
+                    lineNumber: 20,
                     columnNumber: 22
                 }, undefined)
             },
@@ -2991,7 +2993,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/movies",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesDefault.default), {}, void 0, false, {
                     fileName: "src/index.js",
-                    lineNumber: 23,
+                    lineNumber: 24,
                     columnNumber: 18
                 }, undefined)
             },
@@ -2999,14 +3001,14 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
                 path: "/series",
                 element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _seriesDefault.default), {}, void 0, false, {
                     fileName: "src/index.js",
-                    lineNumber: 27,
+                    lineNumber: 28,
                     columnNumber: 18
                 }, undefined)
             }
         ],
         errorElement: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _errorPageDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
-            lineNumber: 30,
+            lineNumber: 31,
             columnNumber: 18
         }, undefined)
     },
@@ -3014,7 +3016,7 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
         path: "/movieplayer/:id",
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviePlayerDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
-            lineNumber: 34,
+            lineNumber: 35,
             columnNumber: 13
         }, undefined)
     },
@@ -3022,7 +3024,15 @@ const appRouter = (0, _reactRouterDom.createBrowserRouter)([
         path: "/seriesplayer/:id",
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _seriesPlayerDefault.default), {}, void 0, false, {
             fileName: "src/index.js",
-            lineNumber: 38,
+            lineNumber: 39,
+            columnNumber: 13
+        }, undefined)
+    },
+    {
+        path: "/search",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _searchDefault.default), {}, void 0, false, {
+            fileName: "src/index.js",
+            lineNumber: 43,
             columnNumber: 13
         }, undefined)
     }
@@ -3033,12 +3043,12 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _react.StrictMode), {
         router: appRouter
     }, void 0, false, {
         fileName: "src/index.js",
-        lineNumber: 45,
+        lineNumber: 50,
         columnNumber: 5
     }, undefined)
 }, void 0, false, {
     fileName: "src/index.js",
-    lineNumber: 44,
+    lineNumber: 49,
     columnNumber: 3
 }, undefined));
 
@@ -3047,7 +3057,7 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _react.StrictMode), {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./App":"e9Zfo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","react":"21dqq","./components/Home":"5rQzE","./components/Movies":"djOIK","./components/Series":"bNu57","react-router-dom":"9xmpe","./components/ErrorPage":"4Nnuo","./components/MoviePlayer":"du6Qu","./components/SeriesPlayer":"atg2k"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./App":"e9Zfo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","react":"21dqq","./components/Home":"5rQzE","./components/Movies":"djOIK","./components/Series":"bNu57","react-router-dom":"9xmpe","./components/ErrorPage":"4Nnuo","./components/MoviePlayer":"du6Qu","./components/SeriesPlayer":"atg2k","./components/Search":"1TO9L"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27562,7 +27572,7 @@ const Navbar = ()=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        href: "/",
+                        to: "/search",
                         className: "me-5",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("i", {
                             className: "bi bi-search"
@@ -39662,7 +39672,7 @@ const Card = (props)=>{
                                 columnNumber: 11
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                children: cardData.original_language.toUpperCase()
+                                children: cardData.original_language?.toUpperCase()
                             }, void 0, false, {
                                 fileName: "src/components/Card.jsx",
                                 lineNumber: 27,
@@ -39683,7 +39693,7 @@ const Card = (props)=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         className: "text-xs text-slate-300",
-                        children: cardData.overview.substring(0, 160) + "..."
+                        children: cardData.overview?.substring(0, 160) + "..."
                     }, void 0, false, {
                         fileName: "src/components/Card.jsx",
                         lineNumber: 34,
@@ -40979,6 +40989,196 @@ $RefreshReg$(_c, "SeriesSidebar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./Loading":"1Dwip","react-router-dom":"9xmpe","./Card":"lWrQs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["farZc","1xC6H","8lqZg"], "8lqZg", "parcelRequirea9e5")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./Loading":"1Dwip","react-router-dom":"9xmpe","./Card":"lWrQs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1TO9L":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$34ec = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$34ec.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _navbar = require("./Navbar");
+var _navbarDefault = parcelHelpers.interopDefault(_navbar);
+var _reactRouterDom = require("react-router-dom");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _card = require("./Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _constants = require("./constants");
+var _s = $RefreshSig$();
+const Search = ()=>{
+    _s();
+    const [searchName, setSearchName] = (0, _react.useState)("");
+    const [searchFor, setSearchFor] = (0, _react.useState)("ALL");
+    const [data, setData] = (0, _react.useState)([]);
+    const getSearchResult = async (Name)=>{
+        try {
+            const options = {
+                method: "GET",
+                url: `https://api.themoviedb.org/3/search/multi?query=${Name}`,
+                headers: {
+                    accept: "application/json",
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjI4OGM0MzkzMTNhNGI4YjJjMWY4NTljZDVkOTNkNSIsIm5iZiI6MTcxOTg2MzIxMC4xMzczODksInN1YiI6IjYyYTQyNjU4NmM4NDkyMDA2NjUyZGM3ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NNAJ0aUUcTESObUHtMLHRFaloBysNe0RfmpyMnxEvp0"
+                }
+            };
+            const response = await (0, _axiosDefault.default).request(options);
+            console.log(response.data.results);
+            setData(response.data.results);
+        } catch (err) {
+            alert(err);
+        }
+    };
+    (0, _react.useEffect)(()=>{
+    // getSearchResult(searchName);
+    }, [
+        searchName,
+        searchFor
+    ]);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {}, void 0, false, {
+                fileName: "src/components/Search.jsx",
+                lineNumber: 33,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "md:flex md:justify-center p-2",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                        type: "text",
+                        className: "w-3/4 text-lg py-1 md:w-5/12 outline-none text-black px-2 rounded-l-3xl",
+                        value: searchName,
+                        onChange: (e)=>{
+                            setSearchName(e.target.value);
+                        }
+                    }, void 0, false, {
+                        fileName: "src/components/Search.jsx",
+                        lineNumber: 35,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                        className: "p-2 bg-green-500 w-1/4 rounded-r-3xl",
+                        onClick: ()=>{
+                            getSearchResult(searchName);
+                        },
+                        children: "Search"
+                    }, void 0, false, {
+                        fileName: "src/components/Search.jsx",
+                        lineNumber: 41,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Search.jsx",
+                lineNumber: 34,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "flex justify-center",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "border  border-cyan-300",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: `m-1 p-1 ${searchFor === "ALL" ? "bg-cyan-300 text-black" : ""}`,
+                            onClick: ()=>{
+                                setSearchFor("ALL");
+                            },
+                            children: "ALL"
+                        }, void 0, false, {
+                            fileName: "src/components/Search.jsx",
+                            lineNumber: 47,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: `m-1 p-1 ${searchFor === "MOVIE" ? "bg-cyan-300 text-black" : ""}`,
+                            onClick: ()=>{
+                                setSearchFor("MOVIE");
+                            },
+                            children: "MOVIE"
+                        }, void 0, false, {
+                            fileName: "src/components/Search.jsx",
+                            lineNumber: 48,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: `m-1 p-1 ${searchFor === "SERIES" ? "bg-cyan-300 text-black" : ""}`,
+                            onClick: ()=>{
+                                setSearchFor("SERIES");
+                            },
+                            children: "SERIES"
+                        }, void 0, false, {
+                            fileName: "src/components/Search.jsx",
+                            lineNumber: 49,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Search.jsx",
+                    lineNumber: 46,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/Search.jsx",
+                lineNumber: 45,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "py-4 md:flex md:flex-wrap md:justify-center",
+                children: data.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: item.media_type == "movie" ? `/movieplayer/${item.id}` : item.media_type == "tv" ? `/seriesplayer/${item.id}` : "",
+                        onClick: (0, _constants.scrollToTop),
+                        children: [
+                            (()=>{
+                                console.log(item);
+                            })(),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
+                                cardData: item
+                            }, void 0, false, {
+                                fileName: "src/components/Search.jsx",
+                                lineNumber: 61,
+                                columnNumber: 11
+                            }, undefined)
+                        ]
+                    }, `${item.id}-${index}`, true, {
+                        fileName: "src/components/Search.jsx",
+                        lineNumber: 55,
+                        columnNumber: 11
+                    }, undefined))
+            }, void 0, false, {
+                fileName: "src/components/Search.jsx",
+                lineNumber: 53,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true);
+};
+_s(Search, "uq/orf7k/yi6Byn0JDGUbjUeuI4=");
+_c = Search;
+exports.default = Search;
+var _c;
+$RefreshReg$(_c, "Search");
+
+  $parcel$ReactRefreshHelpers$34ec.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Navbar":"4U1ks","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","./Card":"lWrQs","./constants":"5erIG"}],"5erIG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "scrollToTop", ()=>scrollToTop);
+const movieStreamingUrl = "https://autoembed.co/movie/tmdb/";
+const scrollToTop = ()=>{
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth" // This makes the scroll smooth
+    });
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["farZc","1xC6H","8lqZg"], "8lqZg", "parcelRequirea9e5")
 
 //# sourceMappingURL=index.975ef6c8.js.map

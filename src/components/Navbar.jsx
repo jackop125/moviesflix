@@ -9,7 +9,7 @@ const Navbar = () => {
       </Link>
       <div>
         <Link to="/" className="mx-5 hover:text-green-500"><i className="bi bi-house-fill"></i></Link> 
-        <Link href="/" className="me-5">
+        <Link to="/search" className="me-5">
           <i className="bi bi-search"></i>
         </Link>
       </div>

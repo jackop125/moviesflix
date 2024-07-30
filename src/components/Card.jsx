@@ -24,7 +24,7 @@ const Card = (props) => {
               ? "Series"
               : "Movie"}
           </p>
-          <p>{cardData.original_language.toUpperCase()}</p>
+          <p>{cardData.original_language?.toUpperCase()}</p>
           <p>
             {new Date(
               cardData.release_date || cardData.first_air_date
@@ -32,7 +32,7 @@ const Card = (props) => {
           </p>
         </div>
         <p className="text-xs text-slate-300">
-          {cardData.overview.substring(0, 160) + "..."}
+          {cardData.overview?.substring(0, 160) + "..."}
         </p>
         <p className="bg-green-500 inline-block px-1  text-black mt-1">
           <i className="bi bi-star-half"></i> : {cardData.vote_average}

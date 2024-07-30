@@ -8,6 +8,7 @@ import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import MoviePlayer from "./components/MoviePlayer";
 import SeriesPlayer from "./components/SeriesPlayer";
+import Search from "./components/Search";
 
 const appRouter = createBrowserRouter([
   {
@@ -36,7 +37,11 @@ const appRouter = createBrowserRouter([
   {
     path:"/seriesplayer/:id",
     element:<SeriesPlayer/>
-  }
+  },
+  {
+    path:"/search",
+    element:<Search/>
+  },
 ]);
 
 const root = createRoot(document.getElementById("root"));
