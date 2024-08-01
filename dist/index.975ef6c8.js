@@ -41017,9 +41017,13 @@ const Search = ()=>{
     const [data, setData] = (0, _react.useState)([]);
     const getSearchResult = async (Name)=>{
         try {
+            let searchUrl = "";
+            if (searchFor == "SERIES") searchUrl = `https://api.themoviedb.org/3/search/tv?query=${Name}`;
+            else if (searchFor == "MOVIE") searchUrl = `https://api.themoviedb.org/3/search/movie?query=${Name}`;
+            else searchUrl = `https://api.themoviedb.org/3/search/multi?query=${Name}`;
             const options = {
                 method: "GET",
-                url: `https://api.themoviedb.org/3/search/multi?query=${Name}`,
+                url: searchUrl,
                 headers: {
                     accept: "application/json",
                     Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjI4OGM0MzkzMTNhNGI4YjJjMWY4NTljZDVkOTNkNSIsIm5iZiI6MTcxOTg2MzIxMC4xMzczODksInN1YiI6IjYyYTQyNjU4NmM4NDkyMDA2NjUyZGM3ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NNAJ0aUUcTESObUHtMLHRFaloBysNe0RfmpyMnxEvp0"
@@ -41033,16 +41037,23 @@ const Search = ()=>{
         }
     };
     (0, _react.useEffect)(()=>{
-    // getSearchResult(searchName);
+        getSearchResult(searchName);
     }, [
-        searchName,
         searchFor
     ]);
+    const getToPath = (item)=>{
+        if (searchFor === "ALL") {
+            if (item.media_type === "movie") return `/movieplayer/${item.id}`;
+            else if (item.media_type === "tv") return `/seriesplayer/${item.id}`;
+        } else if (searchFor === "MOVIE") return `/movieplayer/${item.id}`;
+        else if (searchFor === "SERIES") return `/seriesplayer/${item.id}`;
+        return ""; // Default case if none of the conditions match
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {}, void 0, false, {
                 fileName: "src/components/Search.jsx",
-                lineNumber: 33,
+                lineNumber: 57,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -41057,7 +41068,7 @@ const Search = ()=>{
                         }
                     }, void 0, false, {
                         fileName: "src/components/Search.jsx",
-                        lineNumber: 35,
+                        lineNumber: 59,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -41068,13 +41079,13 @@ const Search = ()=>{
                         children: "Search"
                     }, void 0, false, {
                         fileName: "src/components/Search.jsx",
-                        lineNumber: 41,
+                        lineNumber: 65,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Search.jsx",
-                lineNumber: 34,
+                lineNumber: 58,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -41090,7 +41101,7 @@ const Search = ()=>{
                             children: "ALL"
                         }, void 0, false, {
                             fileName: "src/components/Search.jsx",
-                            lineNumber: 47,
+                            lineNumber: 71,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -41101,7 +41112,7 @@ const Search = ()=>{
                             children: "MOVIE"
                         }, void 0, false, {
                             fileName: "src/components/Search.jsx",
-                            lineNumber: 48,
+                            lineNumber: 72,
                             columnNumber: 13
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
@@ -41112,45 +41123,46 @@ const Search = ()=>{
                             children: "SERIES"
                         }, void 0, false, {
                             fileName: "src/components/Search.jsx",
-                            lineNumber: 49,
+                            lineNumber: 73,
                             columnNumber: 13
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Search.jsx",
-                    lineNumber: 46,
+                    lineNumber: 70,
                     columnNumber: 11
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Search.jsx",
-                lineNumber: 45,
+                lineNumber: 69,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "py-4 md:flex md:flex-wrap md:justify-center",
                 children: data.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: item.media_type == "movie" ? `/movieplayer/${item.id}` : item.media_type == "tv" ? `/seriesplayer/${item.id}` : "",
+                        to: getToPath(item),
                         onClick: (0, _constants.scrollToTop),
                         children: [
                             (()=>{
                                 console.log(item);
                             })(),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default), {
-                                cardData: item
+                                cardData: item,
+                                media_type: searchFor == "MOVIE" ? "movie" : searchFor == "SERIES" ? "tv" : ""
                             }, void 0, false, {
                                 fileName: "src/components/Search.jsx",
-                                lineNumber: 61,
+                                lineNumber: 85,
                                 columnNumber: 11
                             }, undefined)
                         ]
                     }, `${item.id}-${index}`, true, {
                         fileName: "src/components/Search.jsx",
-                        lineNumber: 55,
+                        lineNumber: 79,
                         columnNumber: 11
                     }, undefined))
             }, void 0, false, {
                 fileName: "src/components/Search.jsx",
-                lineNumber: 53,
+                lineNumber: 77,
                 columnNumber: 9
             }, undefined)
         ]

@@ -10,9 +10,17 @@ const Search = () => {
     const [data,setData] = useState([]);
     const getSearchResult = async(Name)=>{
         try{
+          let searchUrl = ""
+          if(searchFor == "SERIES"){
+           searchUrl = `https://api.themoviedb.org/3/search/tv?query=${Name}`
+          }else if(searchFor == "MOVIE"){
+            searchUrl = `https://api.themoviedb.org/3/search/movie?query=${Name}`
+          }else {
+            searchUrl = `https://api.themoviedb.org/3/search/multi?query=${Name}`
+          }
             const options = {
                 method:"GET",
-                url:`https://api.themoviedb.org/3/search/multi?query=${Name}`,
+                url:searchUrl,
                 headers: {
                     accept: "application/json",
                     Authorization: process.env.REACT_APP_API_TOKEN,
@@ -26,8 +34,24 @@ const Search = () => {
         }
     }
     useEffect(()=>{
-        // getSearchResult(searchName);
-    },[searchName,searchFor])
+        getSearchResult(searchName);
+    },[searchFor])
+
+    const getToPath = (item) => {
+      if (searchFor === "ALL") {
+        if (item.media_type === "movie") {
+          return `/movieplayer/${item.id}`;
+        } else if (item.media_type === "tv") {
+          return `/seriesplayer/${item.id}`;
+        }
+      } else if (searchFor === "MOVIE") {
+        return `/movieplayer/${item.id}`;
+      } else if (searchFor === "SERIES") {
+        return `/seriesplayer/${item.id}`;
+      }
+      return ""; // Default case if none of the conditions match
+    };
+
     return (
       <>
         <Navbar />
@@ -52,13 +76,13 @@ const Search = () => {
 
         <div className="py-4 md:flex md:flex-wrap md:justify-center">
         {data.map((item, index) => (
-          <Link key={`${item.id}-${index}`} to={item.media_type == "movie" ? `/movieplayer/${item.id}`:(item.media_type == "tv"? `/seriesplayer/${item.id}` : "")} onClick={scrollToTop} >
+          <Link key={`${item.id}-${index}`} to={getToPath(item)} onClick={scrollToTop} >
             {
               (()=>{
                 console.log(item);
               })()
             }
-          <Card  cardData={item}></Card>
+          <Card  cardData={item} media_type={searchFor == "MOVIE"?"movie":searchFor == "SERIES"?"tv":''}></Card>
           </Link>
         ))}
       </div>
