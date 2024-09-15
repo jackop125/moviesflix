@@ -40,6 +40,11 @@ const Search = () => {
     getSearchResult(searchName);
   }, [searchFor]);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      getSearchResult(searchName);
+    } 
+  }
   const getToPath = (item) => {
     if (searchFor === "ALL") {
       if (item.media_type === "movie") {
@@ -55,6 +60,7 @@ const Search = () => {
     return ""; // Default case if none of the conditions match
   };
 
+  
   return (
     <>
       <Navbar />
@@ -63,9 +69,11 @@ const Search = () => {
           type="text"
           className="w-3/4 text-lg py-1 md:w-5/12 outline-none text-black px-2 rounded-l-3xl"
           value={searchName}
+          autoFocus
           onChange={(e) => {
             setSearchName(e.target.value);
           }}
+          onKeyDown={handleKeyDown}
         />
         <button
           className="p-2 bg-green-500 w-1/4 rounded-r-3xl"
