@@ -3,72 +3,24 @@ import axios from "axios";
 import Card from "./Card";
 import { Link } from "react-router-dom";
 import Loading from "./Loading";
+import useFetchData from "../utils/useFetchData";
 
 const Movies = () => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  
-  // Fetch initial data
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        const options = {
-          method: "GET",
-          url: `${process.env.REACT_APP_MOVIES_URL}?page=1`,
-          params: { language: "en-US" },
-          headers: {
-            accept: "application/json",
-            Authorization: process.env.REACT_APP_API_TOKEN,
-          },
-        };
-        const response = await axios.request(options);
-        setData(response.data.results);
-      } catch (err) {
-        setError(err);
-      }
-    };
-
-    fetchInitialData();
-  }, []);
-
-  // Fetch data when page is updated
-  useEffect(() => {
-    if (page === 1) return; // Skip the initial fetch
-
-    const fetchMoreData = async () => {
-      try {
-        const options = {
-          method: "GET",
-          url: `${process.env.REACT_APP_MOVIES_URL}?page=${page}`,
-          params: { language: "en-US" },
-          headers: {
-            accept: "application/json",
-            Authorization: process.env.REACT_APP_API_TOKEN,
-          },
-        };
-        const response = await axios.request(options);
-        setData((prevData) => [...prevData, ...response.data.results]);
-      } catch (err) {
-        setError(err);
-      }
-    };
-
-    fetchMoreData();
-  }, [page]);
+  let [data,error]= useFetchData(process.env.REACT_APP_MOVIES_URL,page);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
-  if (!data.length) {
+  if (!data) {
     return <Loading />;
   }
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth' // This makes the scroll smooth
+      behavior: "smooth", // This makes the scroll smooth
     });
   };
 
@@ -79,7 +31,11 @@ const Movies = () => {
       </h1>
       <div className="py-4 md:flex md:flex-wrap md:justify-center">
         {data.map((item, index) => (
-          <Link to={`/movieplayer/${item.id}`} key={item.id} onClick={scrollToTop}>
+          <Link
+            to={`/movieplayer/${item.id}`}
+            key={item.id}
+            onClick={scrollToTop}
+          >
             <Card cardData={item}></Card>
           </Link>
         ))}

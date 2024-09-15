@@ -45,7 +45,7 @@ const SeriesPlayer = () => {
           <iframe
             className="w-full h-60 my-1   md:min-h-[450px] mx-auto"
             src={`https://autoembed.co/tv/tmdb/${id}-${SeasonEpisode.Season}-${SeasonEpisode.Episode}`}
-            frameborder="0"
+            frameBorder="0"
             allowFullScreen
           ></iframe>
           <hr />

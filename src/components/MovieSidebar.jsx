@@ -36,8 +36,8 @@ const MovieSidebar = (props) => {
     });
   };
 
-  if (!data.length) {
-    return <Loading />;
+  if (data.length < 1) {
+    return <p>Failed to Fetch</p>
   }
   return (
     <>

@@ -4,67 +4,67 @@ import Card from "./Card";
 import CardShimmer from "./CardShimmer";
 import Loading from "./Loading";
 import { Link } from "react-router-dom";
+import useFetchData from "../utils/useFetchData";
 const Home = () => {
-  const [data, setData] = useState([]);
-  const [error, setError] = useState(null);
+  // const [data, setData] = useState([]);
+  // const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const [data,error] = useFetchData(process.env.REACT_APP_HOME_URL,page);
 
   // Fetch initial data
-  useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        const options = {
-          method: "GET",
-          url: `${process.env.REACT_APP_HOME_URL}?page=1`,
-          params: { language: "en-US" },
-          headers: {
-            accept: "application/json",
-            Authorization: process.env.REACT_APP_API_TOKEN,
-          },
-        };
-        const response = await axios.request(options);
-        setData(response.data.results);
-      } catch (err) {
-        setError(err);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchInitialData = async () => {
+  //     try {
+  //       const options = {
+  //         method: "GET",
+  //         url: `${process.env.REACT_APP_HOME_URL}?page=1`,
+  //         params: { language: "en-US" },
+  //         headers: {
+  //           accept: "application/json",
+  //           Authorization: process.env.REACT_APP_API_TOKEN,
+  //         },
+  //       };
+  //       const response = await axios.request(options);
+  //       setData(response.data.results);
+  //     } catch (err) {
+  //       setError(err);
+  //     }
+  //   };
 
-    fetchInitialData();
-  }, []);
+  //   fetchInitialData();
+  // }, []);
 
-  // Fetch data when page is updated
-  useEffect(() => {
-    if (page === 1) return; // Skip the initial fetch
+  // // Fetch data when page is updated
+  // useEffect(() => {
+  //   if (page === 1) return; // Skip the initial fetch
 
-    const fetchMoreData = async () => {
-      try {
-        const options = {
-          method: "GET",
-          url: `${process.env.REACT_APP_HOME_URL}?page=${page}`,
-          params: { language: "en-US" },
-          headers: {
-            accept: "application/json",
-            Authorization: process.env.REACT_APP_API_TOKEN,
-          },
-        };
-        const response = await axios.request(options);
-        setData((prevData) => [...prevData, ...response.data.results]);
-      } catch (err) {
-        setError(err);
-      }
-    };
+  //   const fetchMoreData = async () => {
+  //     try {
+  //       const options = {
+  //         method: "GET",
+  //         url: `${process.env.REACT_APP_HOME_URL}?page=${page}`,
+  //         params: { language: "en-US" },
+  //         headers: {
+  //           accept: "application/json",
+  //           Authorization: process.env.REACT_APP_API_TOKEN,
+  //         },
+  //       };
+  //       const response = await axios.request(options);
+  //       setData((prevData) => [...prevData, ...response.data.results]);
+  //     } catch (err) {
+  //       setError(err);
+  //     }
+  //   };
 
-    fetchMoreData();
-  }, [page]);
+  //   fetchMoreData();
+  // }, [page]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
-  if (!data.length) {
-    return (
-        <Loading/>
-    );
+  if (!data) {
+    return <Loading />;
   }
   const scrollToTop = () => {
     window.scrollTo({

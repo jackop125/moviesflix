@@ -38,7 +38,6 @@ const MoviePlayer = () => {
           <iframe
             className="w-full h-60 my-1   md:min-h-[450px] mx-auto"
             src={`https://autoembed.co/movie/tmdb/${id}`}
-            frameborder="0"
             allowFullScreen
           ></iframe>
           <hr />
